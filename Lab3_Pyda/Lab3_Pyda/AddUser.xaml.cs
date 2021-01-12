@@ -20,9 +20,10 @@ namespace Lab3_Pyda
         private string nameField;
         private string surnameField;
         private string peselField;
-        private string phoneField;
         private string adressField;
         private string cityField;
+        private string birthdayField;
+        private string countryField;
 
         public AddUser()
         {
@@ -34,13 +35,16 @@ namespace Lab3_Pyda
             nameField = textBoxImie.Text;
             surnameField = textBoxNazwisko.Text;
             peselField = textBoxPesel.Text;
-            phoneField = textBoxNumer.Text;
             adressField = textBoxAdress.Text;
-            cityField = textBoxMiasto.Text;
+            cityField = textBoxCity.Text;
+            birthdayField = textBoxBirthday.Text;
+            countryField = textBoxCountry.Text;
+
+            
 
             try
             {
-                MainWindow.PersonList.Add(new MainWindow.Person() { Firstname = nameField, Lastname = surnameField, City = cityField, Pesel = peselField, Phone = phoneField, Adress = adressField });
+                MainWindow.PersonList.Add(new MainWindow.Person() { Firstname = nameField, Lastname = surnameField, City = cityField, Pesel = peselField, Adress = adressField, Birthday = birthdayField, Country = countryField });
             }
             catch (Exception blad)
             {
@@ -48,17 +52,6 @@ namespace Lab3_Pyda
             }
         }
 
-        /*
-        private void ImageLoad(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-            {
-                Uri fileUri = new Uri(openFileDialog.FileName);
-                imgDynamic.Source = new BitmapImage(fileUri);
-            }
-
-        }
-        */
+       
     }
 }

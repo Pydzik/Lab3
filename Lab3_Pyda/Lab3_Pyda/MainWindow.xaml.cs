@@ -53,7 +53,7 @@ namespace Lab3_Pyda
             }
             catch
             {
-                MessageBox.Show("Nie odnaleziono pliku");
+                MessageBox.Show("Plik nie istnieje");
             }
 
 
@@ -72,6 +72,18 @@ namespace Lab3_Pyda
             public string Phone { get; set; }
             public string City { get; set; }
             public string Adress { get; set; }
+            public string Country { get; set; }
+            public string Birthday { get; set; }
+        }
+
+        private void SaveDB(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LoadDB(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

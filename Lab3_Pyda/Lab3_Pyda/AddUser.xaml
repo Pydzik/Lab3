@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab3_Pyda"
         mc:Ignorable="d"
-        Title="AddUser" Height="450" Width="800">
+        Title="Dodaj użytkownika" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -14,31 +14,33 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
-
             <RowDefinition Height="*" />
+
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <Label Name="Pesel" Content="Pesel" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Name="Pesel" Content="Numer PESEL" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Name="Lastname" Content="Nazwisko" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Name="Firstname" Content="Imię" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Name="Phone" Content="Numer kontaktowy" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Name="Address" Content="Adres kontaktowy" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Name="Firstname" Content="Imię" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Name="Phone" Content="Kraj" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Name="Address" Content="Ulica" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Name="City" Content="Miasto" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-     
+        <Label Name="Birthday" Content="Data urodzenia" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <TextBox Name="textBoxPesel" Grid.Column="1" Grid.Row="0" Width="Auto" Height="Auto"/>
+        <TextBox Name="textBoxPesel" Grid.Column="1" Grid.Row="2" Width="Auto" Height="Auto"/>
         <TextBox Name="textBoxNazwisko" Grid.Column="1" Grid.Row="1" Width="Auto" Height="Auto"/>
-        <TextBox Name="textBoxImie" Grid.Column="1" Grid.Row="2" Width="Auto" Height="Auto"/>
-        <TextBox Name="textBoxNumer" Grid.Column="1" Grid.Row="3" Width="Auto" Height="Auto"/>
+        <TextBox Name="textBoxImie" Grid.Column="1" Grid.Row="0" Width="Auto" Height="Auto"/>
+        <TextBox Name="textBoxBirthday" Grid.Column="1" Grid.Row="3" Width="Auto" Height="Auto"/>
         <TextBox Name="textBoxAdress" Grid.Column="1" Grid.Row="4" Width="Auto" Height="Auto"/>
-        <TextBox Name="textBoxMiasto" Grid.Column="1" Grid.Row="5" Width="Auto" Height="Auto"/>
+        <TextBox Name="textBoxCity" Grid.Column="1" Grid.Row="5" Width="Auto" Height="Auto"/>
+        <TextBox Name="textBoxCountry" Grid.Column="1" Grid.Row="6" Width="Auto" Height="Auto"/>
 
 
-        <Button Name ="ButtonSave" Content="DODAJ" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Click="Button_Dodaj"/>
+        <Button Name ="ButtonSave" Content="Dodaj użytkownika" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Click="Button_Dodaj"/>
 
 
     </Grid>

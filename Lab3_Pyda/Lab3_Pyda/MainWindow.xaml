@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab3_Pyda"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Lista użytkowników" Height="450" Width="750">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
@@ -15,22 +15,29 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+
         </Grid.ColumnDefinitions>
 
-        <ListView Grid.Row="0" Grid.ColumnSpan="3" Name="ListViewXAML" Margin="10" BorderBrush="Black">
+        <ListView Grid.Row="0" Grid.ColumnSpan="5" Name="ListViewXAML" Margin="10" BorderBrush="Black">
             <ListView.View>
 
                 <GridView>
-                    <GridViewColumn Header="Imię" DisplayMemberBinding="{Binding Firstname}" Width="200"/>
-                    <GridViewColumn Header="Nazwisko" DisplayMemberBinding="{Binding Lastname}" Width="200" />
-                    <GridViewColumn Header="Miasto" DisplayMemberBinding="{Binding City}" Width="200"/>
+                    <GridViewColumn Header="Imię" DisplayMemberBinding="{Binding Firstname}" Width="143"/>
+                    <GridViewColumn Header="Nazwisko" DisplayMemberBinding="{Binding Lastname}" Width="143" />
+                    <GridViewColumn Header="PESEL" DisplayMemberBinding="{Binding Pesel}" Width="143"/>
+                    <GridViewColumn Header="Miasto" DisplayMemberBinding="{Binding City}" Width="143"/>
+                    <GridViewColumn Header="Data urodzenia" DisplayMemberBinding="{Binding Birthday}" Width="143"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <Button Content="LOAD" Grid.Row="3" Grid.Column="0" Margin="50"  Click="LoadXML"/>
-        <Button Content="SAVE" Grid.Row="3" Grid.Column="1" Margin="50"  Click="SaveXML"/>
-        <Button Content="REFRESH" Grid.Row="3" Grid.Column="2" Margin="50"  Click="RefreshWindow"/>
+        <Button Content="LOAD FROM XML" Grid.Row="3" Grid.Column="0" Margin="10" Height="35" Click="LoadXML"/>
+        <Button Content="LOAD FROM DB" Grid.Row="3" Grid.Column="1" Margin="10" Height="35" Click="LoadDB"/>
+        <Button Content="SAVE TO XML" Grid.Row="3" Grid.Column="2" Margin="10" Height="35" Click="SaveXML"/>
+        <Button Content="SAVE TO DB" Grid.Row="3" Grid.Column="3" Margin="10" Height="35" Click="SaveDB"/>
+        <Button Content="REFRESH" Grid.Row="3" Grid.Column="4" Margin="10" Height="35" Click="RefreshWindow"/>
 
     </Grid>
 </Window>
