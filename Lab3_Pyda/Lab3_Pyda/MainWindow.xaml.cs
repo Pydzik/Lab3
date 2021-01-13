@@ -73,7 +73,7 @@ namespace Lab3_Pyda
             public string City { get; set; }
             public string Adress { get; set; }
             public string Country { get; set; }
-            public string Birthday { get; set; }
+            public DateTime Birthday { get; set; }
             [XmlIgnore()]
             public BitmapImage Image { get; set; }
 

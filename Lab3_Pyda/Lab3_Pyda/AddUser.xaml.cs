@@ -25,10 +25,13 @@ namespace Lab3_Pyda
         private string peselField;
         private string adressField;
         private string cityField;
-        private string birthdayField;
+        //private string birthdayField;
+        private DateTime birthdayField;
         private string countryField;
         private BitmapImage imgadd;
 
+
+        
         public AddUser()
         {
             InitializeComponent();
@@ -41,10 +44,11 @@ namespace Lab3_Pyda
             peselField = textBoxPesel.Text;
             adressField = textBoxAdress.Text;
             cityField = textBoxCity.Text;
-            birthdayField = textBoxBirthday.Text;
+            birthdayField = (DateTime)DatePickerBirthday.SelectedDate.Value;
             countryField = textBoxCountry.Text;
 
-            
+
+
 
             try
             {
