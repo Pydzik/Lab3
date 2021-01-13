@@ -23,9 +23,9 @@ namespace Lab3_Pyda
         private string nameField;
         private string surnameField;
         private string peselField;
+        private string peselTmp;
         private string adressField;
         private string cityField;
-        //private string birthdayField;
         private DateTime birthdayField;
         private string countryField;
         private BitmapImage imgadd;
@@ -42,6 +42,20 @@ namespace Lab3_Pyda
         private void Button_Dodaj(object sender, RoutedEventArgs e)
         {
 
+            if(textBoxImie.Text =="" || textBoxNazwisko.Text =="" || textBoxPesel.Text == "")
+            {
+                MessageBox.Show("Pola 'Imię', 'Nazwisko' oraz 'PESEL' są wymagane!");
+            }
+
+            else if(textBoxPesel.Text.Length != 11)
+            {
+                MessageBox.Show("Pole 'PESEL' powinno zawierać 11 cyfr!");
+            }
+
+            else 
+            {
+
+
             nameField = textBoxImie.Text;
             surnameField = textBoxNazwisko.Text;
             peselField = textBoxPesel.Text;
@@ -52,7 +66,6 @@ namespace Lab3_Pyda
 
 
 
-
             try
             {
                 MainWindow.PersonList.Add(new MainWindow.Person() { Firstname = nameField, Lastname = surnameField, City = cityField, Pesel = peselField, Adress = adressField, Birthday = birthdayField, Country = countryField, Image = imgadd });
@@ -60,6 +73,7 @@ namespace Lab3_Pyda
             catch (Exception blad)
             {
                 MessageBox.Show(blad.Message);
+            }
             }
         }
 
@@ -95,6 +109,16 @@ namespace Lab3_Pyda
         private void textBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             DataValidator.HandleFindingWhiteSpace(e);
+        }
+
+        private void textBox_PreviewTextInput_WORDS(object sender, TextCompositionEventArgs e)
+        {
+            DataValidator.HandleOnlyWords(e);
+        }
+
+        private void textBox_Preview_DIGITS(object sender, TextCompositionEventArgs e)
+        {
+            DataValidator.HandleOnlyDigits(e);
         }
     }
 }
