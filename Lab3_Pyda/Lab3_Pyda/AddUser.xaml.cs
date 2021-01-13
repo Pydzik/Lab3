@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using System.Xml.Serialization;
+using System.Text.RegularExpressions;
+
 
 namespace Lab3_Pyda
 {
@@ -24,6 +27,7 @@ namespace Lab3_Pyda
         private string cityField;
         private string birthdayField;
         private string countryField;
+        private BitmapImage imgadd;
 
         public AddUser()
         {
@@ -44,7 +48,7 @@ namespace Lab3_Pyda
 
             try
             {
-                MainWindow.PersonList.Add(new MainWindow.Person() { Firstname = nameField, Lastname = surnameField, City = cityField, Pesel = peselField, Adress = adressField, Birthday = birthdayField, Country = countryField });
+                MainWindow.PersonList.Add(new MainWindow.Person() { Firstname = nameField, Lastname = surnameField, City = cityField, Pesel = peselField, Adress = adressField, Birthday = birthdayField, Country = countryField, Image = imgadd });
             }
             catch (Exception blad)
             {
@@ -52,6 +56,25 @@ namespace Lab3_Pyda
             }
         }
 
-       
+        private void Button_Photo(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            {
+                string filePath;
+                openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+                openFileDialog.Filter = "Photo Images | *.png; *.jpg; *.jpeg";
+                openFileDialog.Title = "Wybierz zdjęcie dla użytkownika";
+
+
+                if (openFileDialog.ShowDialog() == true)
+                {
+
+                    filePath = openFileDialog.FileName;
+                    Uri uri = new Uri(filePath);
+                    imgDynamic.Source = new BitmapImage(uri);
+                    imgadd = new BitmapImage(uri);
+                }
+            }
+        }
     }
 }

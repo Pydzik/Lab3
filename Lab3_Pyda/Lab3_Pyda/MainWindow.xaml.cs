@@ -34,7 +34,7 @@ namespace Lab3_Pyda
         {
             XmlSerializer ser = new XmlSerializer(typeof(List<Person>));
 
-            using (FileStream fs = new FileStream("lab3.xml", FileMode.Create))
+            using (FileStream fs = new FileStream("Projekt.xml", FileMode.Create))
             {
                 ser.Serialize(fs, PersonList);
             }
@@ -46,7 +46,7 @@ namespace Lab3_Pyda
             try
             {
                 var mySerializer = new XmlSerializer(typeof(List<Person>));
-                var myFileStream = new FileStream("lab3.xml", FileMode.Open);
+                var myFileStream = new FileStream("Projekt.xml", FileMode.Open);
 
                 PersonList = (List<Person>)mySerializer.Deserialize(myFileStream);
                 ListViewXAML.ItemsSource = PersonList;
@@ -74,6 +74,11 @@ namespace Lab3_Pyda
             public string Adress { get; set; }
             public string Country { get; set; }
             public string Birthday { get; set; }
+            [XmlIgnore()]
+            public BitmapImage Image { get; set; }
+
+            [XmlElement("Imgxml")]
+            public string imgxml { get { return Image.UriSource.ToString(); } set { Image = new BitmapImage(new Uri(value)); } }
         }
 
         private void SaveDB(object sender, RoutedEventArgs e)

@@ -16,31 +16,36 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
 
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="1.3*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.05*" />
         </Grid.ColumnDefinitions>
 
-        <Label Name="Pesel" Content="Numer PESEL" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Name="Lastname" Content="Nazwisko" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Name="Firstname" Content="Imię" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Name="Phone" Content="Kraj" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Name="Address" Content="Ulica" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Name="City" Content="Miasto" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Name="Birthday" Content="Data urodzenia" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Name="Pesel" Content="Numer PESEL" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Label Name="Lastname" Content="Nazwisko" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Label Name="Firstname" Content="Imię" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Label Name="Phone" Content="Kraj" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Label Name="Address" Content="Ulica" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Label Name="City" Content="Miasto" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Label Name="Birthday" Content="Data urodzenia" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
 
-        <TextBox Name="textBoxPesel" Grid.Column="1" Grid.Row="2" Width="Auto" Height="Auto"/>
-        <TextBox Name="textBoxNazwisko" Grid.Column="1" Grid.Row="1" Width="Auto" Height="Auto"/>
-        <TextBox Name="textBoxImie" Grid.Column="1" Grid.Row="0" Width="Auto" Height="Auto"/>
-        <TextBox Name="textBoxBirthday" Grid.Column="1" Grid.Row="3" Width="Auto" Height="Auto"/>
-        <TextBox Name="textBoxAdress" Grid.Column="1" Grid.Row="4" Width="Auto" Height="Auto"/>
-        <TextBox Name="textBoxCity" Grid.Column="1" Grid.Row="5" Width="Auto" Height="Auto"/>
-        <TextBox Name="textBoxCountry" Grid.Column="1" Grid.Row="6" Width="Auto" Height="Auto"/>
+        <TextBox Name="textBoxPesel" Grid.Column="2" Grid.Row="2" Width="Auto" Height="Auto" Grid.ColumnSpan="3"/>
+        <TextBox Name="textBoxNazwisko" Grid.Column="2" Grid.Row="1" Width="Auto" Height="Auto" Grid.ColumnSpan="3"/>
+        <TextBox Name="textBoxImie" Grid.Column="2" Grid.Row="0" Width="Auto" Height="Auto" Grid.ColumnSpan="3"/>
+        <TextBox Name="textBoxBirthday" Grid.Column="2" Grid.Row="3" Width="Auto" Height="Auto" Grid.ColumnSpan="3"/>
+        <TextBox Name="textBoxAdress" Grid.Column="2" Grid.Row="4" Width="Auto" Height="Auto" Grid.ColumnSpan="3"/>
+        <TextBox Name="textBoxCity" Grid.Column="2" Grid.Row="5" Width="Auto" Height="Auto" Grid.ColumnSpan="3"/>
+        <TextBox Name="textBoxCountry" Grid.Column="2" Grid.Row="6" Width="Auto" Height="Auto" Grid.ColumnSpan="3"/>
 
-
-        <Button Name ="ButtonSave" Content="Dodaj użytkownika" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Click="Button_Dodaj"/>
+        <Button Name ="AddPhoto" Content="Dodaj zdjęcie" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Click="Button_Photo" Margin="20"/>
+        <Button Name ="ButtonSave" Content="Dodaj użytkownika" Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3" Click="Button_Dodaj" Margin="20"/>
+        <Image Name="imgDynamic" Grid.Column="2" Grid.Row="7" Stretch="Uniform" Margin="5" />
 
 
     </Grid>
