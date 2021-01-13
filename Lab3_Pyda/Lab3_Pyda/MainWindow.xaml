@@ -28,7 +28,7 @@
                     <GridViewColumn Header="Nazwisko" DisplayMemberBinding="{Binding Lastname}" Width="143" />
                     <GridViewColumn Header="PESEL" DisplayMemberBinding="{Binding Pesel}" Width="143"/>
                     <GridViewColumn Header="Miasto" DisplayMemberBinding="{Binding City}" Width="143"/>
-                    <GridViewColumn Header="Data urodzenia" DisplayMemberBinding="{Binding Birthday, StringFormat=D}" Width="143"/>
+                    <GridViewColumn Header="Data urodzenia" DisplayMemberBinding="{Binding Birthday, StringFormat=dd/MM/yyyy}" Width="143"/>
                 </GridView>
             </ListView.View>
         </ListView>

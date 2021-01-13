@@ -37,8 +37,11 @@ namespace Lab3_Pyda
             InitializeComponent();
         }
 
+
+
         private void Button_Dodaj(object sender, RoutedEventArgs e)
         {
+
             nameField = textBoxImie.Text;
             surnameField = textBoxNazwisko.Text;
             peselField = textBoxPesel.Text;
@@ -60,6 +63,9 @@ namespace Lab3_Pyda
             }
         }
 
+
+
+
         private void Button_Photo(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -79,6 +85,16 @@ namespace Lab3_Pyda
                     imgadd = new BitmapImage(uri);
                 }
             }
+        }
+
+        private void textBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            DataValidator.HandleOnlyOneWord(e);
+        }
+
+        private void textBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            DataValidator.HandleFindingWhiteSpace(e);
         }
     }
 }
