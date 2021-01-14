@@ -41,14 +41,28 @@ namespace Lab3_Pyda
 
         private void Modify(object sender, RoutedEventArgs e)
         {
-            MainWindow.PersonList[Convert.ToInt32(klucz)].Pesel = textBoxPesel.Text;
-            MainWindow.PersonList[Convert.ToInt32(klucz)].Lastname = textBoxNazwisko.Text;
-            MainWindow.PersonList[Convert.ToInt32(klucz)].Firstname = textBoxImie.Text;
-            MainWindow.PersonList[Convert.ToInt32(klucz)].Adress = textBoxAdress.Text;
-            MainWindow.PersonList[Convert.ToInt32(klucz)].City = textBoxCity.Text;
-            MainWindow.PersonList[(klucz)].Birthday = (DateTime)DatePickerBirthday.SelectedDate;
-            MainWindow.PersonList[Convert.ToInt32(klucz)].Image = (BitmapImage)imgDynamic.Source;
-            this.Close();
+            if (textBoxImie.Text == "" || textBoxNazwisko.Text == "" || textBoxPesel.Text == "")
+            {
+                MessageBox.Show("Pola 'Imię', 'Nazwisko' oraz 'PESEL' są wymagane!");
+            }
+
+            else if (textBoxPesel.Text.Length != 11)
+            {
+                MessageBox.Show("Pole 'PESEL' powinno zawierać 11 cyfr!");
+            }
+
+            else
+            {
+
+                MainWindow.PersonList[Convert.ToInt32(klucz)].Pesel = textBoxPesel.Text;
+                MainWindow.PersonList[Convert.ToInt32(klucz)].Lastname = textBoxNazwisko.Text;
+                MainWindow.PersonList[Convert.ToInt32(klucz)].Firstname = textBoxImie.Text;
+                MainWindow.PersonList[Convert.ToInt32(klucz)].Adress = textBoxAdress.Text;
+                MainWindow.PersonList[Convert.ToInt32(klucz)].City = textBoxCity.Text;
+                MainWindow.PersonList[(klucz)].Birthday = (DateTime)DatePickerBirthday.SelectedDate;
+                MainWindow.PersonList[Convert.ToInt32(klucz)].Image = (BitmapImage)imgDynamic.Source;
+                this.Close();
+            }
         }
 
 
