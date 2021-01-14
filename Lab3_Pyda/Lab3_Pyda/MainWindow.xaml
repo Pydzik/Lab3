@@ -20,7 +20,7 @@
 
         </Grid.ColumnDefinitions>
 
-        <ListView Grid.Row="0" Grid.ColumnSpan="5" Name="ListViewXAML" Margin="10" BorderBrush="Black">
+        <ListView Grid.Row="0" Grid.ColumnSpan="5" Name="ListViewXAML" Margin="10" BorderBrush="Black" MouseDoubleClick="ListViewXAML_MouseDoubleClick">
             <ListView.View>
 
                 <GridView>

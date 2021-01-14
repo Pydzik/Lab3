@@ -23,7 +23,6 @@ namespace Lab3_Pyda
         private string nameField;
         private string surnameField;
         private string peselField;
-        private string peselTmp;
         private string adressField;
         private string cityField;
         private DateTime birthdayField;

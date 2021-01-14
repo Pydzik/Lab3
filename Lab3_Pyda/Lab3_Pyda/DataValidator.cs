@@ -11,12 +11,6 @@ namespace Lab3_Pyda
     public static class DataValidator
     {
 
-        public const string CANNOT_BE_EMPTY = "Cannot Be Empty!";
-        public const string SELECT_INDEX = "Select a position";
-        public const string FORCE_INTEGER = "Has to be an integer";
-        public const string NONEXISTING_VALUE = "This value does not exist";
-        public const string INDEX_OUT_OF_RANGE = "Index is out of range";
-
         /// <summary>
         /// Stops the handeling of the <see cref="System.Windows.Controls.TextBox"/> input
         /// if the new character is not a digit

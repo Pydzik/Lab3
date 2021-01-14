@@ -90,5 +90,15 @@ namespace Lab3_Pyda
         {
 
         }
+
+        public void ListViewXAML_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var item = (sender as ListView).SelectedIndex;
+            if (item >= 0)
+            {
+                EditUser mod = new EditUser(item);
+                mod.Show();
+            }
+        }
     }
 }

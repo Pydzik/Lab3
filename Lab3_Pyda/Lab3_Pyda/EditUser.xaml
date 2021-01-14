@@ -1,0 +1,52 @@
+﻿<Window x:Class="Lab3_Pyda.EditUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab3_Pyda"
+        mc:Ignorable="d"
+        Title="Edytuj użytkownika" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="1.3*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.05*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Name="Pesel" Content="Numer PESEL" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Label Name="Lastname" Content="Nazwisko" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Label Name="Firstname" Content="Imię" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Label Name="Phone" Content="Kraj" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Label Name="Address" Content="Ulica" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Label Name="City" Content="Miasto" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <Label Name="Birthday" Content="Data urodzenia" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+
+        <TextBox Name="textBoxImie" Grid.Column="2" Grid.Row="0" Width="Auto" Height="Auto" Grid.ColumnSpan="3" PreviewTextInput="textBox_PreviewTextInput" PreviewKeyDown="textBox_PreviewKeyDown"/>
+        <TextBox Name="textBoxNazwisko" Grid.Column="2" Grid.Row="1" Width="Auto" Height="Auto" Grid.ColumnSpan="3" PreviewTextInput="textBox_PreviewTextInput" PreviewKeyDown="textBox_PreviewKeyDown"/>
+        <TextBox Name="textBoxPesel" Grid.Column="2" Grid.Row="2" Width="Auto" Height="Auto" Grid.ColumnSpan="3" PreviewTextInput="textBox_Preview_DIGITS" PreviewKeyDown="textBox_PreviewKeyDown"/>
+        <DatePicker Name="DatePickerBirthday" SelectedDateFormat="Short"  SelectedDate="1/01/95" DisplayDateStart="1/01/80" DisplayDateEnd="12/31/05" FirstDayOfWeek="Monday" Grid.Column="2" Grid.Row="3" Width="Auto" Height="Auto" Grid.ColumnSpan="3"/>
+        <TextBox Name="textBoxAdress" Grid.Column="2" Grid.Row="4" Width="Auto" Height="Auto" Grid.ColumnSpan="3"/>
+        <TextBox Name="textBoxCity" Grid.Column="2" Grid.Row="5" Width="Auto" Height="Auto" Grid.ColumnSpan="3" PreviewTextInput="textBox_PreviewTextInput_WORDS"/>
+        <TextBox Name="textBoxCountry" Grid.Column="2" Grid.Row="6" Width="Auto" Height="Auto" Grid.ColumnSpan="3" PreviewTextInput="textBox_PreviewTextInput_WORDS"/>
+
+        <Button Name ="AddPhoto" Content="Dodaj/zmień zdjęcie" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Click="Button_Photo" Margin="20"/>
+        <Button Name ="ButtonSave" Content="Edytuj użytkownika" Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3" Click="Modify" Margin="20"/>
+        <Image Name="imgDynamic" Grid.Column="2" Grid.Row="7" Stretch="Uniform" Margin="5" />
+
+
+    </Grid>
+</Window>
