@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
 using System.IO;
+using System.ComponentModel;
+using System.Data.SqlClient;
 
 namespace Lab3_Pyda
 {
@@ -26,6 +28,16 @@ namespace Lab3_Pyda
         public MainWindow()
         {
             InitializeComponent();
+            
+
+            string connectionString;
+            SqlConnection cnn;
+
+            connectionString = @"Data Source=LENOVO-Y720;Initial Catalog=Projekt;User ID=Lenovo-Y720;Trusted_Connection=True;";
+            cnn = new SqlConnection(connectionString);
+            cnn.Open();
+            MessageBox.Show("Połączono z bazą danych!");
+
             formularz.Show();
         }
 

@@ -35,7 +35,6 @@ namespace Lab3_Pyda
             textBoxCity.Text = MainWindow.PersonList[klucz].City;
             textBoxCountry.Text = MainWindow.PersonList[klucz].Country;
             DatePickerBirthday.SelectedDate = MainWindow.PersonList[klucz].Birthday;
-            //x.Content = klucz;
             imgDynamic.Source = MainWindow.PersonList[klucz].Image;
         }
 
@@ -59,6 +58,7 @@ namespace Lab3_Pyda
                 MainWindow.PersonList[Convert.ToInt32(klucz)].Firstname = textBoxImie.Text;
                 MainWindow.PersonList[Convert.ToInt32(klucz)].Adress = textBoxAdress.Text;
                 MainWindow.PersonList[Convert.ToInt32(klucz)].City = textBoxCity.Text;
+                MainWindow.PersonList[Convert.ToInt32(klucz)].Country = textBoxCountry.Text;
                 MainWindow.PersonList[(klucz)].Birthday = (DateTime)DatePickerBirthday.SelectedDate;
                 MainWindow.PersonList[Convert.ToInt32(klucz)].Image = (BitmapImage)imgDynamic.Source;
                 this.Close();
