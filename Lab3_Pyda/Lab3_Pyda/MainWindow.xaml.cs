@@ -22,6 +22,12 @@ namespace Lab3_Pyda
 
     public partial class MainWindow : Window
     {
+
+        string connectionString;
+        SqlConnection cnn;
+        SqlCommand command;
+        String sql, Output = "";
+
         [XmlArray("DataGridXAML"), XmlArrayItem(typeof(List<Person>), ElementName = "Person")]
         public static List<Person> PersonList = new List<Person>();
         AddUser formularz = new AddUser();
@@ -30,13 +36,19 @@ namespace Lab3_Pyda
             InitializeComponent();
             
 
-            string connectionString;
-            SqlConnection cnn;
+            
 
             connectionString = @"Data Source=LENOVO-Y720;Initial Catalog=Projekt;User ID=Lenovo-Y720;Trusted_Connection=True;";
             cnn = new SqlConnection(connectionString);
-            cnn.Open();
-            MessageBox.Show("Połączono z bazą danych!");
+            try
+            {
+                cnn.Open();
+            }
+            catch
+            {
+                MessageBox.Show("Nastąpił błąd podczas łączenia z bazą danych!");
+            }
+            
 
             formularz.Show();
         }
@@ -100,7 +112,28 @@ namespace Lab3_Pyda
 
         private void LoadDB(object sender, RoutedEventArgs e)
         {
+            MainWindow.PersonList.Clear();
+            SqlDataReader dataReader;
+            sql = "SELECT FirstName, LastName, dbo.Ludzie.PESEL, Miasto, DataUrodzenia, Kraj, Ulica FROM dbo.Ludzie INNER JOIN dbo.Zamieszkanie ON dbo.Ludzie.PESEL = dbo.Zamieszkanie.PESEL";
 
+            command = new SqlCommand(sql, cnn);
+            dataReader = command.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+
+            try
+            {
+                MainWindow.PersonList.Add(new MainWindow.Person() { Firstname = (string)dataReader.GetValue(0), Lastname = (string)dataReader.GetValue(1), Pesel = (string)dataReader.GetValue(2), City = (string)dataReader.GetValue(3), Birthday = (DateTime)dataReader.GetValue(4), Country = (string)dataReader.GetValue(5), Adress = (string)dataReader.GetValue(6) });
+                    RefreshWindow(sender, e);
+            }
+            catch (Exception blad)
+            {
+                MessageBox.Show(blad.Message);
+            }
+            }
+            dataReader.Close();
+            command.Dispose();
         }
 
         public void ListViewXAML_MouseDoubleClick(object sender, MouseButtonEventArgs e)
