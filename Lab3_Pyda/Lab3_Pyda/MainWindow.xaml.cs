@@ -23,10 +23,10 @@ namespace Lab3_Pyda
     public partial class MainWindow : Window
     {
 
-        string connectionString;
+        string connectionString = "MultipleActiveResultSets=True";
         SqlConnection cnn;
-        SqlCommand command;
-        String sql, Output = "";
+        SqlCommand command, insert_command;
+        string sql, sql_insert, sql_insert2, Output = "";
 
         [XmlArray("DataGridXAML"), XmlArrayItem(typeof(List<Person>), ElementName = "Person")]
         public static List<Person> PersonList = new List<Person>();
@@ -107,6 +107,47 @@ namespace Lab3_Pyda
 
         private void SaveDB(object sender, RoutedEventArgs e)
         {
+            SqlDataReader dataReader;
+
+
+            foreach (Person person in PersonList)
+            {
+                
+
+                sql = "SELECT Pesel FROM dbo.Ludzie WHERE Pesel LIKE " + person.Pesel + ";";
+                sql_insert = "INSERT INTO dbo.Ludzie VALUES (\'" + person.Pesel + "\', \'" + person.Firstname + "\', \'" + person.Lastname + "\', \'" + person.Birthday.ToString("yyyy-MM-dd") + "\');";
+                sql_insert2 = "INSERT INTO dbo.Zamieszkanie VALUES (\'" + person.Pesel + "\', \'" + person.City + "\', \'" + person.Adress + "\', \'" + person.Country + "\');";
+                //MessageBox.Show(sql_insert);
+                command = new SqlCommand(sql, cnn);
+                dataReader = command.ExecuteReader();
+                //MessageBox.Show("Próba dodania... " + person.Pesel);
+
+                if (!dataReader.Read())
+                {
+                    dataReader.Close();
+                    command.Dispose();
+
+                    insert_command = new SqlCommand(sql_insert, cnn);
+                    int dataInsert = insert_command.ExecuteNonQuery();
+                    insert_command.Dispose();
+                    insert_command = new SqlCommand(sql_insert2, cnn);
+                    int dataInsert2 = insert_command.ExecuteNonQuery();
+
+
+                    insert_command.Dispose();
+                    MessageBox.Show("Dodano nowy rekord!");
+                    continue;
+                }
+
+                dataReader.Close();
+                command.Dispose();
+                
+                
+
+
+            }            
+            command.Dispose();
+            insert_command.Dispose();
 
         }
 
@@ -122,15 +163,15 @@ namespace Lab3_Pyda
             while (dataReader.Read())
             {
 
-            try
-            {
-                MainWindow.PersonList.Add(new MainWindow.Person() { Firstname = (string)dataReader.GetValue(0), Lastname = (string)dataReader.GetValue(1), Pesel = (string)dataReader.GetValue(2), City = (string)dataReader.GetValue(3), Birthday = (DateTime)dataReader.GetValue(4), Country = (string)dataReader.GetValue(5), Adress = (string)dataReader.GetValue(6) });
+                try
+                {
+                    MainWindow.PersonList.Add(new MainWindow.Person() { Firstname = (string)dataReader.GetValue(0), Lastname = (string)dataReader.GetValue(1), Pesel = (string)dataReader.GetValue(2), City = (string)dataReader.GetValue(3), Birthday = (DateTime)dataReader.GetValue(4), Country = (string)dataReader.GetValue(5), Adress = (string)dataReader.GetValue(6) });
                     RefreshWindow(sender, e);
-            }
-            catch (Exception blad)
-            {
-                MessageBox.Show(blad.Message);
-            }
+                }
+                catch (Exception blad)
+                {
+                    MessageBox.Show(blad.Message);
+                }
             }
             dataReader.Close();
             command.Dispose();
