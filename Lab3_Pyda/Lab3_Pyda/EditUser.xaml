@@ -37,7 +37,7 @@
 
         <TextBox Name="textBoxImie" Grid.Column="2" Grid.Row="0" Width="Auto" Height="Auto" Grid.ColumnSpan="3" PreviewTextInput="textBox_PreviewTextInput" PreviewKeyDown="textBox_PreviewKeyDown"/>
         <TextBox Name="textBoxNazwisko" Grid.Column="2" Grid.Row="1" Width="Auto" Height="Auto" Grid.ColumnSpan="3" PreviewTextInput="textBox_PreviewTextInput" PreviewKeyDown="textBox_PreviewKeyDown"/>
-        <TextBox Name="textBoxPesel" Grid.Column="2" Grid.Row="2" Width="Auto" Height="Auto" Grid.ColumnSpan="3" PreviewTextInput="textBox_Preview_DIGITS" PreviewKeyDown="textBox_PreviewKeyDown"/>
+        <TextBox Name="textBoxPesel" Grid.Column="2" Grid.Row="2" Width="Auto" Height="Auto" Grid.ColumnSpan="3" PreviewTextInput="textBox_Preview_DIGITS" PreviewKeyDown="textBox_PreviewKeyDown" IsEnabled="false"/>
         <DatePicker Name="DatePickerBirthday" SelectedDateFormat="Short"  SelectedDate="1/01/95" DisplayDateStart="1/01/80" DisplayDateEnd="12/31/05" FirstDayOfWeek="Monday" Grid.Column="2" Grid.Row="3" Width="Auto" Height="Auto" Grid.ColumnSpan="3"/>
         <TextBox Name="textBoxAdress" Grid.Column="2" Grid.Row="4" Width="Auto" Height="Auto" Grid.ColumnSpan="3"/>
         <TextBox Name="textBoxCity" Grid.Column="2" Grid.Row="5" Width="Auto" Height="Auto" Grid.ColumnSpan="3" PreviewTextInput="textBox_PreviewTextInput_WORDS"/>

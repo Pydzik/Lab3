@@ -25,8 +25,8 @@ namespace Lab3_Pyda
 
         string connectionString = "MultipleActiveResultSets=True";
         SqlConnection cnn;
-        SqlCommand command, insert_command;
-        string sql, sql_insert, sql_insert2, Output = "";
+        SqlCommand command;
+        string sql, sql_insert, sql_insert2, sql_update, sql_update2;
 
         [XmlArray("DataGridXAML"), XmlArrayItem(typeof(List<Person>), ElementName = "Person")]
         public static List<Person> PersonList = new List<Person>();
@@ -115,15 +115,17 @@ namespace Lab3_Pyda
                 
 
                 sql = "SELECT Pesel FROM dbo.Ludzie WHERE Pesel LIKE " + person.Pesel + ";";
-                sql_insert = "INSERT INTO dbo.Ludzie VALUES (\'" + person.Pesel + "\', \'" + person.Firstname + "\', \'" + person.Lastname + "\', \'" + person.Birthday.ToString("yyyy-MM-dd") + "\');";
-                sql_insert2 = "INSERT INTO dbo.Zamieszkanie VALUES (\'" + person.Pesel + "\', \'" + person.City + "\', \'" + person.Adress + "\', \'" + person.Country + "\');";
-                //MessageBox.Show(sql_insert);
+                
+                
                 command = new SqlCommand(sql, cnn);
                 dataReader = command.ExecuteReader();
-                //MessageBox.Show("Próba dodania... " + person.Pesel);
 
                 if (!dataReader.Read())
                 {
+                    SqlCommand insert_command;
+                    sql_insert = "INSERT INTO dbo.Ludzie VALUES (\'" + person.Pesel + "\', \'" + person.Firstname + "\', \'" + person.Lastname + "\', \'" + person.Birthday.ToString("yyyy-MM-dd") + "\');";
+                    sql_insert2 = "INSERT INTO dbo.Zamieszkanie VALUES (\'" + person.Pesel + "\', \'" + person.City + "\', \'" + person.Adress + "\', \'" + person.Country + "\');";
+
                     dataReader.Close();
                     command.Dispose();
 
@@ -138,6 +140,25 @@ namespace Lab3_Pyda
                     MessageBox.Show("Dodano nowy rekord!");
                     continue;
                 }
+                else
+                {
+                    SqlCommand update_command;
+                    sql_update = "UPDATE dbo.Ludzie SET FirstName =\'" + person.Firstname + "\', LastName =\'" + person.Lastname + "\', DataUrodzenia =\'" + person.Birthday.ToString("yyyy-MM-dd") + "\' WHERE PESEL =\'" + person.Pesel + "\';";
+                    sql_update2 = "UPDATE dbo.Zamieszkanie SET Miasto=\'" + person.City + "\', Ulica =\'" + person.Adress + "\', Kraj=\'" + person.Country + "\' WHERE PESEL =\'" + person.Pesel + "\';";
+
+                    dataReader.Close();
+                    command.Dispose();
+
+                    update_command = new SqlCommand(sql_update, cnn);
+                    int dataUpdate = update_command.ExecuteNonQuery();
+                    update_command.Dispose();
+                    update_command = new SqlCommand(sql_update2, cnn);
+                    int dataUpdate2 = update_command.ExecuteNonQuery();
+
+                    update_command.Dispose();
+                    continue;
+
+                }
 
                 dataReader.Close();
                 command.Dispose();
@@ -147,7 +168,7 @@ namespace Lab3_Pyda
 
             }            
             command.Dispose();
-            insert_command.Dispose();
+
 
         }
 
