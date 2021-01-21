@@ -26,7 +26,7 @@ namespace Lab3_Pyda
         string connectionString = "MultipleActiveResultSets=True";
         SqlConnection cnn;
         SqlCommand command;
-        string sql, sql_insert, sql_insert2, sql_update, sql_update2;
+        string sql, sql_insert, sql_insert2, sql_update, sql_update2, sql_stored;
 
         [XmlArray("DataGridXAML"), XmlArrayItem(typeof(List<Person>), ElementName = "Person")]
         public static List<Person> PersonList = new List<Person>();
@@ -122,10 +122,17 @@ namespace Lab3_Pyda
 
                 if (!dataReader.Read())
                 {
-                    SqlCommand insert_command;
+                    SqlCommand insert_command, insert_stored;
                     sql_insert = "INSERT INTO dbo.Ludzie VALUES (\'" + person.Pesel + "\', \'" + person.Firstname + "\', \'" + person.Lastname + "\', \'" + person.Birthday.ToString("yyyy-MM-dd") + "\');";
                     sql_insert2 = "INSERT INTO dbo.Zamieszkanie VALUES (\'" + person.Pesel + "\', \'" + person.City + "\', \'" + person.Adress + "\', \'" + person.Country + "\');";
-
+                    insert_stored = new SqlCommand("_InsertDB @pesel = @pesel, @FirstName = @FirstName, @LastName = @LastName, @DataUrodzenia = @DataUrodzenia, @Miasto = @Miasto, @Ulica = @Ulica, @Kraj = @Kraj", cnn);
+                    insert_stored.Parameters.Add("pesel", System.Data.SqlDbType.Char).Value = person.Pesel;
+                    insert_stored.Parameters.Add("FirstName", System.Data.SqlDbType.VarChar).Value = person.Firstname;
+                    insert_stored.Parameters.Add("LastName", System.Data.SqlDbType.VarChar).Value = person.Lastname;
+                    insert_stored.Parameters.Add("DataUrodzenia", System.Data.SqlDbType.DateTime).Value = person.Birthday.ToString("yyyy-MM-dd");
+                    insert_stored.Parameters.Add("Miasto", System.Data.SqlDbType.VarChar).Value = person.City;
+                    insert_stored.Parameters.Add("Ulica", System.Data.SqlDbType.VarChar).Value = person.Adress;
+                    insert_stored.Parameters.Add("Kraj", System.Data.SqlDbType.VarChar).Value = person.Country;
                     dataReader.Close();
                     command.Dispose();
 
@@ -134,8 +141,9 @@ namespace Lab3_Pyda
                     insert_command.Dispose();
                     insert_command = new SqlCommand(sql_insert2, cnn);
                     int dataInsert2 = insert_command.ExecuteNonQuery();
+                    int insertStored = insert_stored.ExecuteNonQuery();
 
-
+                    insert_stored.Dispose();
                     insert_command.Dispose();
                     MessageBox.Show("Dodano nowy rekord!");
                     continue;
