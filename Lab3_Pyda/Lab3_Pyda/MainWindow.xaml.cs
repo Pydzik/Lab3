@@ -26,7 +26,7 @@ namespace Lab3_Pyda
         string connectionString = "MultipleActiveResultSets=True";
         SqlConnection cnn;
         SqlCommand command;
-        string sql, sql_update, sql_update2;
+        string sql;
 
         [XmlArray("DataGridXAML"), XmlArrayItem(typeof(List<Person>), ElementName = "Person")]
         public static List<Person> PersonList = new List<Person>();
@@ -143,26 +143,28 @@ namespace Lab3_Pyda
                 }
                 else
                 {
-                    SqlCommand update_command;
-                    sql_update = "UPDATE dbo.Ludzie SET FirstName =\'" + person.Firstname + "\', LastName =\'" + person.Lastname + "\', DataUrodzenia =\'" + person.Birthday.ToString("yyyy-MM-dd") + "\' WHERE PESEL =\'" + person.Pesel + "\';";
-                    sql_update2 = "UPDATE dbo.Zamieszkanie SET Miasto=\'" + person.City + "\', Ulica =\'" + person.Adress + "\', Kraj=\'" + person.Country + "\' WHERE PESEL =\'" + person.Pesel + "\';";
+                    SqlCommand update_stored;
+
+                    update_stored = new SqlCommand("_UpdateDB @pesel = @pesel, @FirstName = @FirstName, @LastName = @LastName, @DataUrodzenia = @DataUrodzenia, @Miasto = @Miasto, @Ulica = @Ulica, @Kraj = @Kraj", cnn);
+                    update_stored.Parameters.Add("pesel", System.Data.SqlDbType.Char).Value = person.Pesel;
+                    update_stored.Parameters.Add("FirstName", System.Data.SqlDbType.VarChar).Value = person.Firstname;
+                    update_stored.Parameters.Add("LastName", System.Data.SqlDbType.VarChar).Value = person.Lastname;
+                    update_stored.Parameters.Add("DataUrodzenia", System.Data.SqlDbType.DateTime).Value = person.Birthday.ToString("yyyy-MM-dd");
+                    update_stored.Parameters.Add("Miasto", System.Data.SqlDbType.VarChar).Value = person.City;
+                    update_stored.Parameters.Add("Ulica", System.Data.SqlDbType.VarChar).Value = person.Adress;
+                    update_stored.Parameters.Add("Kraj", System.Data.SqlDbType.VarChar).Value = person.Country;
+
 
                     dataReader.Close();
                     command.Dispose();
 
-                    update_command = new SqlCommand(sql_update, cnn);
-                    int dataUpdate = update_command.ExecuteNonQuery();
-                    update_command.Dispose();
-                    update_command = new SqlCommand(sql_update2, cnn);
-                    int dataUpdate2 = update_command.ExecuteNonQuery();
+                    int updateStored = update_stored.ExecuteNonQuery();
 
-                    update_command.Dispose();
+                    update_stored.Dispose();
                     continue;
 
                 }
 
-                dataReader.Close();
-                command.Dispose();
                 
                 
 
@@ -171,6 +173,13 @@ namespace Lab3_Pyda
             command.Dispose();
 
 
+        }
+
+        private void IleWpisow(object sender, RoutedEventArgs e)
+        {
+            SqlCommand skalarna = new SqlCommand("_Show_IleWpisow", cnn);
+            MessageBox.Show("W bazie danych znajduje się " + skalarna.ExecuteScalar().ToString()+" wpisów.");
+            skalarna.Dispose();
         }
 
         private void LoadDB(object sender, RoutedEventArgs e)

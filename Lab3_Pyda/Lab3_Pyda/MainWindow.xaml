@@ -33,7 +33,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
+        <Button Content="F. SKALARNA" Grid.Row="1" Grid.Column="2" Margin="10" Height="35"  Click="IleWpisow"/>
         <Button Content="LOAD FROM XML" Grid.Row="3" Grid.Column="0" Margin="10" Height="35" Click="LoadXML"/>
         <Button Content="LOAD FROM DB" Grid.Row="3" Grid.Column="1" Margin="10" Height="35" Click="LoadDB"/>
         <Button Content="SAVE TO XML" Grid.Row="3" Grid.Column="2" Margin="10" Height="35" Click="SaveXML"/>
